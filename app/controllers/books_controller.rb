@@ -12,9 +12,9 @@ class BooksController < ApplicationController
     html_file = URI.open(@url).open
     @html_doc = Nokogiri::HTML(html_file)
     @array = []
-    # @array = @html_doc.search("h3 div")
-    @html_doc.search("h3 div").each do |element|
-      @array << element.text.strip
+    link = element.attribute("href").value
+    @html_doc.search("div > a").each do |element|
+      element.attribute("href").value.include?("https://lifeclub.org") && @array << link
     end
   end
 end
