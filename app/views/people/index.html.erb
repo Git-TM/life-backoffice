@@ -1,0 +1,12 @@
+<h1 class="text-center">My People</h1>
+
+
+<% @people.each do |per|  %>
+  <%= link_to per.firstname, person_path(per) %>
+  <%= per.peopletype.name %>
+<% end %>
+
+<br><br>
+<p><%=link_to "Add a person", new_person_path %></p>
+
+<%= @array %>

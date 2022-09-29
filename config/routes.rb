@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "books#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :books
+  resources :people
   post 'book/search', to: "books#search"
+  get 'person/search', to: "books#search"
   # Defines the root path route ("/")
   # root "articles#index"
 end
