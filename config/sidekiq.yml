@@ -1,0 +1,4 @@
+:schedule:
+  people_anniversary:
+    cron: '0 0 * * * *'
+    class: HelloWorld

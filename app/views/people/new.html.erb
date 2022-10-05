@@ -1,0 +1,11 @@
+<h1>Wanna add a person ?</h1>
+
+<%= form_for(@person) do |f| %>
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname %>
+  <%= f.label :dob%>
+  <%= f.date_field :dob, start_year: 1800, end_year: Time.now.year %>
+  <%= f.submit %>
+<% end %>
