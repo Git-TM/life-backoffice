@@ -3,7 +3,6 @@ class PeopleController < ApplicationController
   def index
     @people = Person.all
     PeopleAnniversaryJob.perform_now
-    @array = array
   end
 
   def show
