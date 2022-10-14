@@ -6,6 +6,12 @@ gem "net-http"
 gem "sidekiq"
 gem "sidekiq-scheduler"
 
+# Authorization gem for the scope by users
+gem 'pundit'
+
+# Cors for the API
+gem 'rack-cors'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 

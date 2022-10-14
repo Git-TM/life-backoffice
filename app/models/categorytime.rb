@@ -1,0 +1,2 @@
+class Categorytime < ApplicationRecord
+end

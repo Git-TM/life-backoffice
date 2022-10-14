@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   resources :people
   post 'book/search', to: "books#search"
   get 'person/search', to: "books#search"
+  namespace :api, defaults: { format: :json } do
+      namespace :v1 do
+        resources :timentries, only: [ :index ]
+      end
+    end
   # Defines the root path route ("/")
   # root "articles#index"
 end
