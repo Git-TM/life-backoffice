@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'person/search', to: "books#search"
   namespace :api, defaults: { format: :json } do
       namespace :v1 do
-        resources :timentries, only: [ :index ]
+        resources :timeentries, only: [ :index ]
       end
     end
   # Defines the root path route ("/")

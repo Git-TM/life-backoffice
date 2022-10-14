@@ -1,3 +1,3 @@
 class Timeentry < ApplicationRecord
-  belongs_to :categorytimes
+  belongs_to :categorytime
 end

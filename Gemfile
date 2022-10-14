@@ -6,6 +6,8 @@ gem "net-http"
 gem "sidekiq"
 gem "sidekiq-scheduler"
 
+
+
 # Authorization gem for the scope by users
 gem 'pundit'
 
