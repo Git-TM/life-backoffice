@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :people
   post 'book/search', to: "books#search"
   get 'person/search', to: "books#search"
+  get 'timeular/events', to: "timeentries#subscribe"
   namespace :api, defaults: { format: :json } do
       namespace :v1 do
         resources :timeentries, only: [ :index ]
