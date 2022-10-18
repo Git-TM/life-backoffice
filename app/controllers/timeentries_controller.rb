@@ -6,8 +6,8 @@ class TimeentriesController < ApplicationController
   before_action :timeularauthenticate, only: [:subscribe]
   before_action :envload, only: [:subscribe]
 
-  def index
-    @timentries = Timentry.all
+  def dashboard
+    @timeentries = Timeentry.all
   end
 
   def subscribe
@@ -18,8 +18,6 @@ class TimeentriesController < ApplicationController
     request["Authorization"] = "Bearer #{@token}"
     response = https.request(request)
     @events = response.read_body
-    # @timeulartoken = Rails.cache.read(:timeulartoken)
-    # @hello = Rails.cache.read(:hello)
   end
 
   private
@@ -38,8 +36,6 @@ class TimeentriesController < ApplicationController
     response = https.request(request)
     token_hash = JSON.parse(response.read_body)
     @token = token_hash["token"]
-    # Rails.cache.write('timeulartoken', response.read_body["token"])
-    # Rails.cache.write('hello', response.read_body["token"])
   end
 
   def envload
