@@ -63,7 +63,11 @@ gem "sassc-rails"
 gem 'open-uri'
 gem 'nokogiri'
 
+# Offer group_by_day and group_by_week methods for charts
+gem "groupdate"
+
 gem "devise"
+# Add library for different data charts with JS
 gem "chartkick"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"

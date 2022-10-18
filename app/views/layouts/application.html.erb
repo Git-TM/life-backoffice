@@ -84,6 +84,8 @@
                             </svg>
                             <span class="ml-3">Temps</span>
                           <% end %>
+                          <%= link_to 'This week', timeentries_dashboard_path(:search => {:start_date => (Date.today).at_beginning_of_year, :end_date => Date.today }, tab: "this_week"),
+        { :class => "tab-container-link text-decoration-none px-3", 'data-tabs-active-target' => "tab" } %>
                         </li>
                         <li>
                           <%= link_to timeentries_dashboard_path, class: "text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group" do  %>

@@ -7,6 +7,7 @@ class TimeentriesController < ApplicationController
   before_action :envload, only: [:subscribe]
 
   def dashboard
+    init
     @timeentries = Timeentry.all
   end
 
@@ -40,5 +41,21 @@ class TimeentriesController < ApplicationController
 
   def envload
     Dotenv::Railtie.load
+  end
+
+  def difftime(timeentry)
+    return ((timeentry.end_date - timeentry.start_date) / 3600).round(2)
+  end
+
+  def init
+    if params[:search].nil?
+      @timeall = Timeentry.all
+      @sum_jour = 7
+    else
+      @timeall = Timeentry.where(date: (params[:search][:start_date].to_s..params[:search][:end_date].to_s))
+      @sum_jour = params[:search][:end_date].to_date - params[:search][:start_date].to_date
+      @allname = Timeentry.pluck(:name).uniq
+      # @freelancetag = @timeall.where(name: "Freelance").pluck(:tag).uniq
+    end
   end
 end
