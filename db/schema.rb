@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_214359) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_20_143951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,8 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_214359) do
     t.bigint "user_id"
     t.float "durationinhour"
     t.datetime "date"
-    t.bigint "categorytime_id"
-    t.index ["categorytime_id"], name: "index_timeentries_on_categorytime_id"
+    t.bigint "timesubcategory_id"
+    t.index ["timesubcategory_id"], name: "index_timeentries_on_timesubcategory_id"
     t.index ["user_id"], name: "index_timeentries_on_user_id"
   end
 
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_214359) do
 
   add_foreign_key "books", "authors"
   add_foreign_key "people", "peopletypes"
-  add_foreign_key "timeentries", "categorytimes"
+  add_foreign_key "timeentries", "timesubcategories"
   add_foreign_key "timeentries", "users"
   add_foreign_key "timesubcategories", "categorytimes"
 end

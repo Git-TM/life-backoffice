@@ -53,15 +53,18 @@ user = User.where(email: "tristanmonteiro97@gmail.com").to_a[0].id
   # Si oui je dois regarder si le label est présent dans une subcategory dont le nom est ce nom
     label_in_subcategory = Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"])
     unless label_in_subcategory.nil?
-      categorytime = label_in_subcategory.categorytime
+      # categorytime = label_in_subcategory.timesubcategory
         variable = Timeentry.new(start_date: started_date,
                        end_date: ended_date,
                        tag: timeentry["note"]["tags"][0]["label"],
-                       categorytime_id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).categorytime_id,
+                       timesubcategory_id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).id,
                        date: started_date,
                        durationinhour: ((ended_date - started_date) / 3600).round(2),
                        user_id: user)
-      variable.categorytime = categorytime
+
+      # label_in_subcategory.timeentries = variable
+      # variable.timesubcategory = label_in_subcategory
+      # label_in_subcategory.categorytimes = Category.where(id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).categorytime_id)
       variable.save
       p variable
       p variable.valid?

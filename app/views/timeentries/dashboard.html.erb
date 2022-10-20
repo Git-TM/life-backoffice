@@ -1,7 +1,14 @@
+<div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+    <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Time Global</h3>
+    <div class="block w-full overflow-x-auto">
+      <%= pie_chart Timesubcategory.joins(:timeentries).group(:name).sum("timeentries.durationinhour") %>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
   <%# 4 box responsive 2x2 %>
   <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+    <div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="flex items-center">
           <div class="flex-shrink-0">
               <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><%= @timeall.all.count %></span>
@@ -15,11 +22,11 @@
           </div>
         </div>
     </div>
-    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+    <div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">XX</span>
-              <h3 class="text-base font-normal text-gray-500">Avg time per working day</h3>
+              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><%= (@timeall.sum(:durationinhour) / @sum_jour).round(2) %> h</span>
+              <h3 class="text-base font-normal text-gray-500">Avg time per day</h3>
           </div>
           <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
               32.9%
@@ -29,10 +36,10 @@
           </div>
         </div>
     </div>
-    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+    <div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">385</span>
+              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><%= (@timeall.sum(:durationinhour) / (@sum_jour / 7)).round(2) %> h</span>
               <h3 class="text-base font-normal text-gray-500">Avg time per week </h3>
           </div>
           <div class="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
@@ -43,10 +50,10 @@
           </div>
         </div>
     </div>
-      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+      <div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">385</span>
+              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"><%= (@timeall.sum(:durationinhour) / @timeall.size).round(2) %> h</span>
               <h3 class="text-base font-normal text-gray-500">Mean average number of timeentries</h3>
           </div>
           <div class="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
@@ -58,7 +65,13 @@
         </div>
     </div>
   </div>
-  <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+  <div class="bg-dark-color shadow rounded-lg mt-4 p-4 sm:p-6 xl:p-8 ">
+      <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Time Global</h3>
+      <div class="block w-full overflow-x-auto">
+        <%= render "globalchart" %>
+      </div>
+  </div>
+  <div class="bg-dark-color shadow rounded-lg mb-4 mt-4 p-4 sm:p-6 h-full">
       <div class="flex items-center justify-between mb-4">
         <h3 class="text-xl font-bold leading-none text-gray-900">Latest Customers</h3>
         <a href="#" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
@@ -87,20 +100,11 @@
         </ul>
       </div>
   </div>
-  <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-      <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Time Global</h3>
-      <div class="block w-full overflow-x-auto">
-        <%= render "globalchart" %>
-      </div>
-  </div>
-  <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-      <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Time Global</h3>
-      <div class="block w-full overflow-x-auto">
-        <%= render "donutchartbytag" %>
-      </div>
-  </div>
 </div>
 
 
-<% @variable = Timeentry.last %>
-<%= p @variable.categorytime.name %>
+<% @variable = Timesubcategory.where(name: "misterauto").first %>
+<%= p @variable.timeentries.sum(:durationinhour) %>
+
+<%# <%= pie_chart Timesubcategory.joins(:timeentries).group(:name).sum("timeentries.durationinhour") %> %>
+<%# <%= pie_chart @timeall.joins(:subcategory).group(:subcategory).sum(:durationinhour) %> %>

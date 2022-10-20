@@ -1,28 +1,37 @@
+<% sql = "Select * FROM timeentries" %>
+<%= records_array = ActiveRecord::Base.connection.execute(sql) %>
+
+<% records_array.each do |element| %>
+<%= p element["tag"] %>
+<% end %>
+
+
+
 <%= pie_chart [
         {
             name: "freelance",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "freelance").first.id).count,
-            stack: "stack 1",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "misterauto").first.id),
+            # stack: "stack 1"
         },
         {
             name: "code",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "code").first.id).count,
-            stack: "stack 2",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "goodwill").first.id),
+            # stack: "stack 2"
         }
-    ]
+    ], stacked: true, max: 10
 %>
 
 
 <%= line_chart [
         {
             name: "freelance",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "freelance").first.id).categorytimes.group_by_day(:date),
+            data: Timesubcategory.where(name: "misterauto").first.timeentries.sum(:durationinhour),
             stack: "stack 1"
         },
         {
             name: "code",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "code").first.id).group_by_day(:date),
+            data: Timesubcategory.where(name: "lewagon").first.timeentries.sum(:durationinhour),
             stack: "stack 2"
         }
     ], stacked: true, max: 10
-%>
+ %>

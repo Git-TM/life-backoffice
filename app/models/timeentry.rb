@@ -1,4 +1,4 @@
 class Timeentry < ApplicationRecord
-  belongs_to :categorytime
-  has_one :timsubcategory, through: :categorytimes
+  belongs_to :timesubcategory
+  has_one :categorytime, through: :timesubcategories
 end

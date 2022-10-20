@@ -1,34 +1,28 @@
 <%= column_chart [
         {
-            name: "freelance",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "freelance").first.id)
+            name: "misterauto",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "misterauto").first.id)
             .group_by_day(:date).sum(:durationinhour),
             stack: "stack 1",
             barThickness: 8
         },
         {
-            name: "code",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "code").first.id)
+            name: "goodwill",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "goodwill").first.id)
             .group_by_day(:date).sum(:durationinhour),
             stack: "stack 2"
         },
         {
-            name: "lecture",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "lecture").first.id)
+            name: "lewagon",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "lewagon").first.id)
             .group_by_day(:date).sum(:durationinhour),
             stack: "stack 3"
         },
         {
-            name: "général",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "général").first.id)
+            name: "trackinapp",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "trackingapp").first.id)
             .group_by_day(:date).sum(:durationinhour),
             stack: "stack 4"
-        },
-        {
-            name: "heure",
-            data: @timeall.where(categorytime_id: Categorytime.where(name: "heure").first.id)
-            .group_by_day(:date).sum(:durationinhour),
-            stack: "stack 5"
         }
     ], stacked: true, max: 10
 %>

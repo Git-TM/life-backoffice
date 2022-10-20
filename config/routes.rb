@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   resources :books
   resources :people
   resources :timeentries
+
+  namespace :charts do
+    namespace :timeentries do
+      get "new"
+    end
+  end
+
   namespace :api, defaults: { format: :json } do
       namespace :v1 do
         resources :timeentries, only: [ :index, :create ]

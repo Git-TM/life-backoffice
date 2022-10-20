@@ -1,3 +1,4 @@
 class Timesubcategory < ApplicationRecord
-  belongs_to :categorytime
+  has_many :timeentries
+  has_one :categorytime
 end

@@ -54,4 +54,7 @@ class TimeentriesController < ApplicationController
       # @freelancetag = @timeall.where(name: "Freelance").pluck(:tag).uniq
     end
   end
+  def self.timesubcategories
+    return self.timesubcategory
+  end
 end
