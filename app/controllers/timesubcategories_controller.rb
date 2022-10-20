@@ -1,0 +1,2 @@
+class TimesubcategoriesController < ApplicationController
+end

@@ -1,17 +1,18 @@
 Category,Subcategory,Weeklyhoursgoal,Shortweek
-Sport,skate,4,FALSE
-Sport,Autre,2,FALSE
-Freelance,misterauto,,VRAI
-Freelance,goodwill,2,VRAI
-Freelance,Le Wagon,,VRAI
-Code,Projet persos,10,FALSE
-Code,trackingapp,10,FALSE
-Code,Tutoriel,10,FALSE
-Lecture,Code,2,FALSE
-Lecture,Finance,2,FALSE
-Lecture,Livre perso,2,FALSE
-Lecture,Livre code,2,FALSE
-Général,Courses,1,FALSE
-Général,Pause repas,,FALSE
-Heure,téléphone,,FALSE
-Heure,sommeil,,FALSE
+sport,skate,4,FALSE
+sport,autresport,2,FALSE
+freelance,misterauto,,VRAI
+freelance,goodwill,2,VRAI
+freelance,lewagon,,VRAI
+code,projets_persos,10,FALSE
+code,trackingapp,10,FALSE
+code,tutoriel,10,FALSE
+lecture,Code,2,FALSE
+lecture,Finance,2,FALSE
+lecture,livre_perso,2,FALSE
+lecture,livre_code,2,FALSE
+général,courses,1,FALSE
+général,pause-repas,,FALSE
+heure,telephone,,FALSE
+heure,sommeil,,FALSE
+heure,autre,,FALSE
