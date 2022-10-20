@@ -1,0 +1,28 @@
+<%= pie_chart [
+        {
+            name: "freelance",
+            data: @timeall.where(categorytime_id: Categorytime.where(name: "freelance").first.id).count,
+            stack: "stack 1",
+        },
+        {
+            name: "code",
+            data: @timeall.where(categorytime_id: Categorytime.where(name: "code").first.id).count,
+            stack: "stack 2",
+        }
+    ]
+%>
+
+
+<%= line_chart [
+        {
+            name: "freelance",
+            data: @timeall.where(categorytime_id: Categorytime.where(name: "freelance").first.id).categorytimes.group_by_day(:date),
+            stack: "stack 1"
+        },
+        {
+            name: "code",
+            data: @timeall.where(categorytime_id: Categorytime.where(name: "code").first.id).group_by_day(:date),
+            stack: "stack 2"
+        }
+    ], stacked: true, max: 10
+%>

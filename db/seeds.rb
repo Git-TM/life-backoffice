@@ -37,28 +37,59 @@ end
 
 
 puts ("----- Create all the timeentries -----")
+
+# J'itère et je chéque pour chaque timmentries
 json_file = JSON.parse(File.read(filepath_timentries))
-# p json_file["timeEntries"]
-json_file["timeEntries"].each do |timentry|
-  start_date = DateTime.parse(timentry["duration"]["startedAt"])
-  end_date = DateTime.parse(timentry["duration"]["stoppedAt"])
-  timesubcategory = Timesubcategory.where(name: timentry["note"]["tags"][0]["label"]).to_a[0].categorytime_id || 0
-  user = User.where(email: "tristanmonteiro97@gmail.com").to_a[0].id
-  p timesubcategory
-  p user
-  unless timentry["note"]["tags"].empty?
-    variable = Timeentry.new(start_date: start_date,
-                    end_date: end_date,
-                    tag: timentry["note"]["tags"][0]["label"],
-                    categorytime_id: timesubcategory,
-                    user_id: user)
-    variable.save
-    next
+json_file["timeEntries"].each do |timeentry|
+
+# initialisaiton des variables
+started_date = Time.parse(timeentry["duration"]["startedAt"])
+ended_date = Time.parse(timeentry["duration"]["stoppedAt"])
+user = User.where(email: "tristanmonteiro97@gmail.com").to_a[0].id
+
+# Est-ce qu'il y'a un label ?
+  unless timeentry["note"]["tags"].empty?
+
+  # Si oui je dois regarder si le label est présent dans une subcategory dont le nom est ce nom
+    label_in_subcategory = Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"])
+    unless label_in_subcategory.nil?
+      categorytime = label_in_subcategory.categorytime
+        variable = Timeentry.new(start_date: started_date,
+                       end_date: ended_date,
+                       tag: timeentry["note"]["tags"][0]["label"],
+                       categorytime_id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).categorytime_id,
+                       date: started_date,
+                       durationinhour: ((ended_date - started_date) / 3600).round(2),
+                       user_id: user)
+      variable.categorytime = categorytime
+      variable.save
+      p variable
+      p variable.valid?
+
+# categorytime = Categorytime.new(first_name: "Gregory", last_name: "House")
+# categorytime.save
+
+# timeentry = Timeentry.new(first_name: "Allison", last_name: "Cameron")
+# timeentry.categorytime = categorytime
+# timeentry.save
+
+
+
+      # Timeentry.create(start_date: started_date,
+      #                  end_date: ended_date,
+      #                  tag: timeentry["note"]["tags"][0]["label"],
+      #                  categorytime_id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).categorytime_id,
+      #                  date: started_date,
+      #                  durationinhour: ((ended_date - started_date) / 3600).round(2),
+      #                  user_id: user)
+      # variable.categorytimes = label_in_subcategory
+      # variable.save!
+      # p variable.valid?
+    end
+  # Si non, je next.
+  next
   end
 end
-
-
-# Creating people
 
 # Creating people
 CSV.foreach(filepath_people, headers: true) do |row|

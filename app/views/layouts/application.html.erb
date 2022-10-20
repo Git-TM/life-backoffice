@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   </head>
 
   <body>
@@ -173,8 +174,8 @@
             </footer>
           </div>
       </div>
-      <script async defer src="https://buttons.github.io/buttons.js"></script>
-      <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+      <%# <script async defer src="https://buttons.github.io/buttons.js"></script> %>
+      <%# <script src="https://demo.themesberg.com/windster/app.bundle.js"></script> %>
     </div>
   </body>
 </html>

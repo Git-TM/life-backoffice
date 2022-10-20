@@ -9,6 +9,7 @@ class TimeentriesController < ApplicationController
   def dashboard
     init
     @timeentries = Timeentry.all
+    @allcategorytimes = Categorytime.all
   end
 
   def subscribe
@@ -24,7 +25,6 @@ class TimeentriesController < ApplicationController
   private
 
   def timeularauthenticate
-    # cache = ActiveSupport::Cache::MemoryStore.new
     url = URI("https://api.timeular.com/api/v3/developer/sign-in")
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -41,10 +41,6 @@ class TimeentriesController < ApplicationController
 
   def envload
     Dotenv::Railtie.load
-  end
-
-  def difftime(timeentry)
-    return ((timeentry.end_date - timeentry.start_date) / 3600).round(2)
   end
 
   def init
