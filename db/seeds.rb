@@ -61,35 +61,10 @@ user = User.where(email: "tristanmonteiro97@gmail.com").to_a[0].id
                        date: started_date,
                        durationinhour: ((ended_date - started_date) / 3600).round(2),
                        user_id: user)
-
-      # label_in_subcategory.timeentries = variable
-      # variable.timesubcategory = label_in_subcategory
-      # label_in_subcategory.categorytimes = Category.where(id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).categorytime_id)
       variable.save
       p variable
       p variable.valid?
-
-# categorytime = Categorytime.new(first_name: "Gregory", last_name: "House")
-# categorytime.save
-
-# timeentry = Timeentry.new(first_name: "Allison", last_name: "Cameron")
-# timeentry.categorytime = categorytime
-# timeentry.save
-
-
-
-      # Timeentry.create(start_date: started_date,
-      #                  end_date: ended_date,
-      #                  tag: timeentry["note"]["tags"][0]["label"],
-      #                  categorytime_id: Timesubcategory.find_by(name: timeentry["note"]["tags"][0]["label"]).categorytime_id,
-      #                  date: started_date,
-      #                  durationinhour: ((ended_date - started_date) / 3600).round(2),
-      #                  user_id: user)
-      # variable.categorytimes = label_in_subcategory
-      # variable.save!
-      # p variable.valid?
     end
-  # Si non, je next.
   next
   end
 end
