@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_24_123743) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_20_143951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,53 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_123743) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "categorytimes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.date "dob"
+    t.bigint "peopletype_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["peopletype_id"], name: "index_people_on_peopletype_id"
+  end
+
+  create_table "peopletypes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timeentries", force: :cascade do |t|
+    t.string "name"
+    t.string "tag"
+    t.string "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.float "durationinhour"
+    t.datetime "date"
+    t.bigint "timesubcategory_id"
+    t.index ["timesubcategory_id"], name: "index_timeentries_on_timesubcategory_id"
+    t.index ["user_id"], name: "index_timeentries_on_user_id"
+  end
+
+  create_table "timesubcategories", force: :cascade do |t|
+    t.string "name"
+    t.boolean "shortweek"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "categorytime_id"
+    t.index ["categorytime_id"], name: "index_timesubcategories_on_categorytime_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -41,4 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_123743) do
   end
 
   add_foreign_key "books", "authors"
+  add_foreign_key "people", "peopletypes"
+  add_foreign_key "timeentries", "timesubcategories"
+  add_foreign_key "timeentries", "users"
+  add_foreign_key "timesubcategories", "categorytimes"
 end

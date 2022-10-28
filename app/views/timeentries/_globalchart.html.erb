@@ -1,0 +1,28 @@
+<%= column_chart [
+        {
+            name: "misterauto",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "misterauto").first.id)
+            .group_by_day(:date).sum(:durationinhour),
+            stack: "stack 1",
+            barThickness: 8
+        },
+        {
+            name: "goodwill",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "goodwill").first.id)
+            .group_by_day(:date).sum(:durationinhour),
+            stack: "stack 2"
+        },
+        {
+            name: "lewagon",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "lewagon").first.id)
+            .group_by_day(:date).sum(:durationinhour),
+            stack: "stack 3"
+        },
+        {
+            name: "trackinapp",
+            data: @timeall.where(timesubcategory_id: Timesubcategory.where(name: "trackingapp").first.id)
+            .group_by_day(:date).sum(:durationinhour),
+            stack: "stack 4"
+        }
+    ], stacked: true, max: 10
+%>
