@@ -13,7 +13,6 @@ gem 'pundit'
 
 # Cors for the API
 gem 'rack-cors'
->>>>>>> 691977b50c936605c0f023a063b3ee11cc424fdc
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
