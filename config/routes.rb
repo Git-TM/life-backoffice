@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "timeentries#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   post 'book/search', to: "books#search"
   get 'person/search', to: "books#search"
