@@ -1,8 +1,10 @@
+<p><%= p @json_subscription["subscriptions"].empty? %></p>
+<p><%= p @webhook_response %></p>
 <div class="rounded w-full lg:w-4/5 xl:w-2/3 mx-auto mt-4 block lg:flex section justify-evenly" data-controller="tabdisplay">
   <ul id="tabs" class="py-2 px-1 mb-8 w-full md:w-1/5 flex md:inline overflow-x-auto md:overflow-auto">
     <li class="gradient-text min-w-fit px-4 font-bold py-1 text-base md:py-2 border-gradient rounded-t-mb-px border-gradient">
       <a id="default-tab" href="#"> This week </a>
-      <%= link_to "Books", books_path, tab: "this_week",  %>
+      <%= link_to "Books", books_path, tab: "this_week"  %>
     </li>
     <li class="px-4 font-light min-w-fit py-1 md:py-2 white-tab">
       <a id="default-tab" href="#"> This month </a>
@@ -123,9 +125,6 @@
             <% @timeentries.sort_by { |date| date.start_date }.first(4).each do |time| %>
               <li class="py-3 sm:py-4">
                 <div class="flex items-center space-x-4">
-                    <%# <div class="flex-shrink-0">
-                      <img class="h-8 w-8 rounded-full" src="https://demo.themesberg.com/windster/images/users/neil-sims.png" alt="Neil image">
-                    </div> %>
                     <div class="flex-1 min-w-0">
                       <p class="text-sm font-medium text-white-900 truncate"><%= time.tag %></p>
                       <p class="text-sm font-medium text-white-900 truncate"><%= time.date.to_date %></p>

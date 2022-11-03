@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "timeentries#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   post 'book/search', to: "books#search"
   get 'person/search', to: "books#search"
@@ -16,11 +16,12 @@ Rails.application.routes.draw do
     end
   end
 
+  post '/timewebhooks', to: "timewebhooks#create"
+
   namespace :api, defaults: { format: :json } do
-      namespace :v1 do
-        resources :timeentries, only: [ :index, :create ]
-      end
+    namespace :v1 do
+      resources :timeentries, only: :index
+      post 'timeentries', to: "timeentries#create"
     end
-  # Defines the root path route ("/")
-  # root "articles#index"
+  end
 end
