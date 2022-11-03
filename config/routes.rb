@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get "new"
     end
   end
-  post '/timewebhooks', to: "timewebhooks#create"
+  post 'timewebhooks', to: "timewebhooks#create"
   # get '/timewebhooks', to: "timewebhooks#create"
 
   namespace :api, defaults: { format: :json } do
