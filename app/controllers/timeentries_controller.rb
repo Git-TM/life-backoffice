@@ -23,9 +23,9 @@ class TimeentriesController < ApplicationController
     request["Authorization"] = "Bearer #{@token}"
     response = https.request(request)
     @json_subscription = JSON.parse(response.read_body)
-    if @json_subscription["subscriptions"].empty?
-      subscribewebhooks
-    end
+    # if @json_subscription["subscriptions"].empty?
+    #   subscribewebhooks
+    # end
   end
 
   def subscribewebhooks
