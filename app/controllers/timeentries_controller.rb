@@ -22,7 +22,6 @@ class TimeentriesController < ApplicationController
     request = Net::HTTP::Get.new(url)
     request["Authorization"] = "Bearer #{@token}"
     response = https.request(request)
-    @env_key = ENV['TIMEULAR_API_KEY']
     @json_subscription = JSON.parse(response.read_body)
     if @json_subscription["subscriptions"].empty?
       subscribewebhooks
