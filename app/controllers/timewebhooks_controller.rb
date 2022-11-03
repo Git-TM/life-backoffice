@@ -1,0 +1,2 @@
+class TimewebhooksController < ApplicationController
+end

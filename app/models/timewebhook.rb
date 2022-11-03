@@ -1,0 +1,2 @@
+class Timewebhook < ApplicationRecord
+end
