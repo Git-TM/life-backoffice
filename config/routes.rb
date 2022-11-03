@@ -17,10 +17,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-      namespace :v1 do
-        resources :timeentries, only: [ :index, :create ]
-      end
+    namespace :v1 do
+      resources :timeentries, only: :index
+      post 'timeentries', to: "timeentries#create"
     end
-  # Defines the root path route ("/")
-  # root "articles#index"
+  end
 end
