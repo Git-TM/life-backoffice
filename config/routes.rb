@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post '/timewebhooks', to: "timewebhooks#create"
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :timeentries, only: :index

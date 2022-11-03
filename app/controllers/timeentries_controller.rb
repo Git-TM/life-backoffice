@@ -34,7 +34,7 @@ class TimeentriesController < ApplicationController
     https.use_ssl = true
     request = Net::HTTP::Post.new(url)
     request["Authorization"] = "Bearer #{@token}"
-    request.body = "{\n    \"event\": \"trackingCreated\",\n    \"target_url\": \"https://tristan-life-backoffice.herokuapp.com/api/v1/timeentries\"\n}"
+    request.body = "{\n    \"event\": \"trackingCreated\",\n    \"target_url\": \"https://tristan-life-backoffice.herokuapp.com/timewebhooks\"\n}"
     response = https.request(request)
     @webhook_response = response.read_body
   end
