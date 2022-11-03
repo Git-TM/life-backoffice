@@ -16,10 +16,10 @@ class TimewebhooksController < ApplicationController
   #   params.require(:timewebhooks).permit(:event_data)
   # end
 
-  protected
+  # protected
 
-  def render_response(status)
-    render json: { response: "received" }, status: status
-  end
+  # def render_response(status)
+  #   render json: { response: "received" }, status: status
+  # end
 
 end
