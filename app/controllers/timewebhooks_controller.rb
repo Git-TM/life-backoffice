@@ -2,7 +2,7 @@ class TimewebhooksController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   before_action :skip_authorization
-  skip_before_action :authenticate_user!
+  # skip_before_action :authenticate_user!
 
   def create
     # request.body.rewind
