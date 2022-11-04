@@ -8,6 +8,9 @@ class TimeentriesController < ApplicationController
   before_action :listwebhooks, only: [:dashboard]
   # before_action :subscribewebhooks, only: [:dashboard]
   # before_action :init, only: [:dashboard]
+  # skip_before_action :verify_authenticity_token
+  # before_action :skip_authorization
+  # skip_before_action :authenticate_user!
 
   def dashboard
     init
@@ -34,7 +37,7 @@ class TimeentriesController < ApplicationController
     https.use_ssl = true
     request = Net::HTTP::Post.new(url)
     request["Authorization"] = "Bearer #{@token}"
-    request.body = "{\n    \"event\": \"timeEntryCreated\",\n    \"target_url\": \"https://tristan-bo.com/api/v1/timeentries\"\n}"
+    request.body = "{\n    \"event\": \"timeEntryCreated\",\n    \"target_url\": \"https://tristan-life-backoffice.herokuapp.com/timeentries\"\n}"
     response = https.request(request)
     @webhook_response = response.read_body
   end
