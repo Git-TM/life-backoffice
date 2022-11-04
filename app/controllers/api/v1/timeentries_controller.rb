@@ -6,7 +6,7 @@ module Api
       render json: @timeentries, status: 200
     end
 
-    # def create
+    def create
     #   @timeentry = Timeentry.new(timeentry_params)
     #   authorize @timeentry
     #   if @timeentry.save
@@ -14,6 +14,6 @@ module Api
     #   else
     #     render_error
     #   end
-    # end
+    end
   end
 end
