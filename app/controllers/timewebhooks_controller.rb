@@ -1,15 +1,14 @@
 class TimewebhooksController < ApplicationController
-
   skip_before_action :verify_authenticity_token
-  before_action :skip_authorization
-  skip_before_action :authenticate_user!
+  # before_action :skip_authorization
+  # skip_before_action :authenticate_user!
 
   def create
     request.body.rewind
     response = JSON.parse(request.body.read)
     @webhook = Timewebhook.new(event_data: response)
     @webhook.save!
-    head: ok
+    # head: ok
   end
 
   # def provider_timewebhook_params
