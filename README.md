@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Rails application for my personal use : tracking of my expenses (Webhooks from Revolut), my time (Webhooks from Timeular), birthday of people I love (Sidekiq with Slack reminder 3 days before) 
