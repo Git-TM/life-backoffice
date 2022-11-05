@@ -4,15 +4,11 @@ class PeopleAnniversaryJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    date = Time.now.strftime('%m/%d/')
-    array = []
-    people = Person.all
-    people.each do |per|
-      if per.dob.strftime('%m/%d/') == date
-        array << per
+    Person.all.each do |per|
+      if per.dob.strftime('%m/%d/') == Time.now.strftime('%m/%d/')
+        NextBirthdayJob.perform_in(1.day, arg: per)
       end
     end
-    return array
   end
 
 end

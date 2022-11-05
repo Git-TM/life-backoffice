@@ -1,4 +1,8 @@
 :schedule:
   people_anniversary:
-    cron: '0 0 * * * *'
-    class: HelloWorld
+    cron: '0 7 * * * *'
+    class: PeopleAnniversary
+
+  next_birthday:
+    cron: '0 7 * * * *'
+    class: NextBirthday

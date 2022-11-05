@@ -1,8 +1,10 @@
 class PeopleController < ApplicationController
 
+  before_action :todaybirthdays, only: [:index]
+
   def index
     @people = Person.all
-    PeopleAnniversaryJob.perform_now
+    @upcoming_birthday_people = Person.order(incomingbirthday: :asc).limit(11)
   end
 
   def show
@@ -31,7 +33,19 @@ class PeopleController < ApplicationController
     redirect_to people_path
   end
 
+
+  def todaybirthdays
+    @birthday_people_today = []
+    Person.all.each do |per|
+      if per.dob.strftime('%m/%d/') == Time.now.strftime('%m/%d/')
+        @birthday_people_today << per
+      end
+    end
+    return @birthday_people_today
+  end
+
   private
+
 
   def set_person
     @person = Person.find(params[:id])
