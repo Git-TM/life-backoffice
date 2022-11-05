@@ -41,6 +41,9 @@ Rails.application.configure do
   # Added this line for css precompile in production
   config.assets.css_compressor = nil
 
+  #force ssl on my app on production
+  config.force_ssl = true
+
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
