@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
 
   def index
     @people = Person.all
-    @upcoming_birthday_people = Person.order(incomingbirthday: :asc).limit(11)
+    @upcoming_birthday_people = Person.order(incomingbirthday: :asc).limit(5)
   end
 
   def show

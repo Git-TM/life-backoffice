@@ -1,3 +1,3 @@
 class Expense < ApplicationRecord
-  belongs_to :ExpenseCategory
+  belongs_to :expense_category
 end

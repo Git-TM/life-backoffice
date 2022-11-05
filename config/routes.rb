@@ -6,15 +6,12 @@ Rails.application.routes.draw do
   get 'person/search', to: "books#search"
   get 'timeentries/dashboard', to: "timeentries#dashboard"
   get 'timeentry/events', to: "timeentries#subscribe"
+  get 'expenses/dashboard', to: "expenses#dashboard"
   resources :books
   resources :people
   resources :timeentries
 
-  namespace :charts do
-    namespace :timeentries do
-      get "new"
-    end
-  end
+
   post 'timewebhooks', to: "timewebhooks#create"
   # get '/timewebhooks', to: "timewebhooks#create"
 

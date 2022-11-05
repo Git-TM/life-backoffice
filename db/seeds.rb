@@ -3,9 +3,10 @@ require 'open-uri'
 require 'net/http'
 require 'json'
 
-filepath_category = "app/assets/Category.csv"
-filepath_timentries = 'app/assets/timentries.json'
-filepath_people = 'app/assets/people.csv'
+filepath_category = "app/assets/data/Category.csv"
+filepath_timentries = 'app/assets/data/timentries.json'
+filepath_people = 'app/assets/data/people.csv'
+filepath_expense = 'app/assets/data/Expense_app.csv'
 csv_options = { col_sep: ',', headers: :first_row, encoding: 'UTF-8' }
 
 
@@ -13,8 +14,10 @@ csv_options = { col_sep: ',', headers: :first_row, encoding: 'UTF-8' }
 # Timeentry.delete_all
 # Timesubcategory.delete_all
 # Categorytime.delete_all
-Person.delete_all
-Peopletype.delete_all
+# Person.delete_all
+# Peopletype.delete_all
+Expense.delete_all
+ExpenseCategory.delete_all
 
 # subcategories_array = []
 
@@ -84,17 +87,33 @@ Peopletype.delete_all
 # end
 
 
-puts ("----- Grouping all the subcategories -----")
-CSV.foreach(filepath_people, headers: true) do |row|
-  p Peopletype.find_or_create_by(name: row[3])
+# puts ("----- Creating all the peopletypes -----")
+# CSV.foreach(filepath_people, headers: true) do |row|
+#   p Peopletype.find_or_create_by(name: row[3])
+# end
+
+
+# puts ("----- Create all the people -----")
+# CSV.foreach(filepath_people, headers: true) do |row|
+#   associated = Peopletype.find_by(name: row[3])
+#   new_person = Person.create(firstname: row[0], lastname: row[1], dob: row[2], incomingbirthday: row[4])
+#   new_person.peopletype = associated
+#   new_person.save
+#   p new_person
+# end
+
+
+puts ("----- Creating all the category expenses -----")
+CSV.foreach(filepath_expense, headers: true) do |row|
+  ExpenseCategory.find_or_create_by(name: row[2])
 end
 
 
-puts ("----- Create all the peopletypes -----")
-CSV.foreach(filepath_people, headers: true) do |row|
-  associated = Peopletype.find_by(name: row[3])
-  new_person = Person.create(firstname: row[0], lastname: row[1], dob: row[2], incomingbirthday: row[4])
-  new_person.peopletype = associated
-  new_person.save
-  p new_person
+puts ("----- Create all the expenses -----")
+CSV.foreach(filepath_expense, headers: true) do |row|
+  associated = ExpenseCategory.find_by(name: row[2])
+  new_expense = Expense.create(date: row[0], amount: row[1])
+  new_expense.expense_category = associated
+  new_expense.save
+  p new_expense
 end

@@ -17,25 +17,20 @@
   <%# </div> %>
 <% end %>
 
+<h2>Incoming birthdays</h1>
 
-
-
-
-<h2>My best people</h1>
-<div class="section">
-  <div class="grid gap-4 grid-cols-3 md:grid-cols-5">
-    <% @upcoming_birthday_people.each do |per|  %>
-      <div class="w-full max-w-sm m-3 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex flex-col items-center py-10">
-          <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://source.unsplash.com/random/100x100" alt="Bonnie image"/>
-          <h5 class="mb-1 text-xl font-medium text-gray-900"><%= per.firstname %></h5>
-          <span class="text-sm text-gray-500"><%= per.peopletype.name %></span>
-          <span class="text-sm text-gray-500"><%= per.incomingbirthday.strftime('%d/%m') %></span>
-          <div class="flex mt-4 space-x-3 md:mt-6">
-              <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifier</a>
-          </div>
+<div class="mt-4 w-full grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+  <% @upcoming_birthday_people.each do |per| %>
+    <div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+      <div class="flex flex-col items-center">
+        <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://source.unsplash.com/random/120x120" alt="Bonnie image"/>
+        <h5 class="mb-1 text-xl font-medium text-white-900"><%= per.firstname %></h5>
+        <span class="text-sm text-white-500"><%= per.peopletype.name %></span>
+        <span class="text-sm text-white-500"><%= per.incomingbirthday.strftime('%d/%m') %></span>
+        <div class="flex mt-4 space-x-3 md:mt-6">
+          <a href="#" class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Modifier</a>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
