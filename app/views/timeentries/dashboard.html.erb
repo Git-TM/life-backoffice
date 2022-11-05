@@ -1,10 +1,9 @@
-<p><%= p @json_subscription %></p>
-<p><%= p @webhook_response %></p>
+<%# <%= p @json_subscription %>
+<%# <%= p @webhook_response %>
 <div class="rounded w-full lg:w-4/5 xl:w-2/3 mx-auto mt-4 block lg:flex section justify-evenly" data-controller="tabdisplay">
   <ul id="tabs" class="py-2 px-1 mb-8 w-full md:w-1/5 flex md:inline overflow-x-auto md:overflow-auto">
     <li class="gradient-text min-w-fit px-4 font-bold py-1 text-base md:py-2 border-gradient rounded-t-mb-px border-gradient">
-      <a id="default-tab" href="#"> This week </a>
-      <%= link_to "Books", books_path, tab: "this_week"  %>
+      <%= link_to "this week", timeentries_dashboard_path(:search => {:start_date => Date.today.at_beginning_of_week, :end_date => Date.today.at_beginning_of_week }, tab: "this_week"), class: "text-base text-white-900 font-normal rounded-lg hover:bg-gray-100 hover:text-gray-900 flex items-center p-2 group"  %>
     </li>
     <li class="px-4 font-light min-w-fit py-1 md:py-2 white-tab">
       <a id="default-tab" href="#"> This month </a>
@@ -15,7 +14,7 @@
 <div class="bg-dark-color shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     <h3 class="text-xl leading-none font-bold text-white-900 mb-10">Time Global</h3>
     <div class="block w-full overflow-x-auto">
-      <%= pie_chart Timesubcategory.joins(:timeentries).group(:name).sum("timeentries.durationinhour") %>
+      <%= pie_chart Timeentry.where(date: (params[:search][:start_date].to_s..params[:search][:end_date].to_s)).joins(:timesubcategory).group("timesubcategories.name").sum("durationinhour") %>
     </div>
 </div>
 
@@ -122,7 +121,7 @@
       </div>
       <div class="flow-root">
         <ul role="list" class="divide-y divide-gray-200">
-            <% @timeentries.sort_by { |date| date.start_date }.first(4).each do |time| %>
+            <% @timeall.sort_by { |date| date.start_date }.first(4).each do |time| %>
               <li class="py-3 sm:py-4">
                 <div class="flex items-center space-x-4">
                     <div class="flex-1 min-w-0">
